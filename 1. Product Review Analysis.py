@@ -37,15 +37,28 @@ reviews_cap()
 
 # .count
 
-#positive_words = ["good", "excellent", "great", "awesome", "fantastic", "superb", "amazing"]
-#negative_words = ["bad", "poor", "terrible", "horrible", "awful", "disappointing", "subpar"]
+from collections import Counter
 
-words = ["good", "excellent", "great", "awesome", "fantastic", "superb", 
-         "amazing", "bad", "poor", "terrible", "horrible", "awful", "disappointing", "subpar"]
+positive_words = ["good", "excellent", "great", "awesome", "fantastic", "superb", "amazing"]
+negative_words = ["bad", "poor", "terrible", "horrible", "awful", "disappointing", "subpar"]
 
-descri_words = reviews.count([words])
-total = sum(descri_words)
-print(total)
+
+def descri_words():
+    positive_count = 0
+    negative_count = 0
+    for review in reviews:
+        words = review.split()
+        for word in words:
+            format_word = word.strip('.').lower()
+            if format_word in positive_words:
+                positive_count += 1
+            elif format_word in negative_words:
+                negative_count += 1 
+    total_count = (positive_count, negative_count)
+    print(f"Total count: {total_count}")
+
+descri_words()
+            
 
 # Task 3: Review Summary
 #Implement a script that takes the first 30 characters of a review and appends "…" 
